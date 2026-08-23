@@ -27,9 +27,9 @@ Complete all TODO sections in the source code:
 
 After completing the programming assignment, add this reflection to your initial discussion post in LEO.
 
-Your reflection should be approximately 150–200 words and address the following questions:
+ Your reflection should be approximately 150–200 words and address the following questions:
 
 1. What concepts or skills did you learn while completing this assignment?
 2. What challenges did you encounter, and how did you overcome them?
 3. Compare OOP to procedural programming.
-4. Discuss the benefits of maintainability and reusability and apply this managing overhead, practical application development, and future use.
+4. Discuss the benefits of maintainability and reusability and apply this managing overhead,practical application development, and future use.
