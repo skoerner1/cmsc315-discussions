@@ -11,112 +11,91 @@ shift elements in memory and how different operations impact performance.
 
 
 def insert_at(lst, index, value):
-    """
-    TODO (Student):
-    Insert a value into the list at the specified index.
-
-    Requirements:
-    - Use a list operation to insert the value.
-    - Add comments explaining what happens to existing elements
-      after an insertion occurs.
-    - Use comments to explain how insertion performance may vary depending on
-      where the insertion occurs.
-    """
-    pass
+    lst.insert(index, value)
 
 
 def delete_at(lst, index):
-    """
-    TODO (Student):
-    Remove and return the value at the specified index.
-
-    Requirements:
-    - Validate that the index exists.
-    - Return the removed value.
-    - Return None if the index is invalid.
-    - Add comments explaining why index validation and safe deletion are important.
-    """
-    pass
+    if 0 <= index < len(lst):
+        return lst.pop(index)
+    return None
 
 
 def search_value(lst, value):
-    """
-    TODO (Student):
-    Search for a value within the list.
-
-    Requirements:
-    - Return the index if the value is found.
-    - Return -1 if the value is not found.
-    - Add comments explaining why this is a linear search and why it scans sequentially.
-    """
-    pass
+    for index in range(len(lst)):
+        if lst[index] == value:
+            return index
+    return -1
 
 
 def main():
     print("=== UNIT 3: LIST OPERATIONS ===")
-
-    # ===============================
-    # TODO (Student): INSERTION TESTS
-    # ===============================
-    #
-    # Requirements:
-    # 1. Create a list containing several values.
-    # 2. Display the original list.
-    # 3. Test insertion at:
-    #    - the beginning
-    #    - the middle
-    #    - the end
-    # 4. Display the list after each insertion.
-    # 5. Use comments to explain each step in the implementation.
-
+    # This list is a list of equipment that is utilized in satellite tracking.
+    equipment = ["LNA", "Upconverter", "Spectrum Analyzer", "SSPA"]
     print("\n=== INSERTION TESTS ===")
-    print("TODO: Create a list and demonstrate insertions.")
+    print("Original equipment list:", equipment)
 
-    # ===============================
-    # TODO (Student): DELETION TESTS
-    # ===============================
-    #
-    # Requirements:
-    # 1. Delete an item from:
-    #    - the beginning
-    #    - the middle
-    #    - the end
-    # 2. Display the removed value.
-    # 3. Display the updated list after each deletion.
-    # 4. Use comments to clearly explain what is happening in the output.
+    # Insert equipment at the beginning of the list.
+    insert_at(equipment, 0, "Antenna Control Unit")
+    print("After inserting at the beginning:", equipment)
+
+    # Insert equipment in the middle of the list.
+    middle_index = len(equipment) // 2
+    insert_at(equipment, middle_index, "Downconverter")
+    print("After inserting in the middle:", equipment)
+
+    # Insert equipment at the end of the list.
+    insert_at(equipment, len(equipment), "Power Supply")
+    print("After inserting at the end:", equipment)
 
     print("\n=== DELETION TESTS ===")
-    print("TODO: Demonstrate deletions from multiple positions.")
+    # Remove the first item in the list.
+    removed = delete_at(equipment, 0)
+    print("Removed from the beginning:", removed)
+    print("Updated list:", equipment)
 
-    # ===============================
-    # TODO (Student): SEARCH TESTS
-    # ===============================
-    #
-    # Requirements:
-    # 1. Search for a value that exists.
-    # 2. Search for a value that does not exist.
-    # 3. Display the search results with clear explanations.
-    # 4. Use comments to explain each step.
+    # Remove an item from the middle of the list.
+    middle_index = len(equipment) // 2
+    removed = delete_at(equipment, middle_index)
+    print("Removed from the middle:", removed)
+    print("Updated list:", equipment)
+
+    # Remove the last item in the list.
+    removed = delete_at(equipment, len(equipment) - 1)
+    print("Removed from the end:", removed)
+    print("Updated list:", equipment)
 
     print("\n=== SEARCH TESTS ===")
-    print("TODO: Demonstrate searching for values.")
+    # Search for equipment that exists in the list.
+    search_item = "LNA"
+    result = search_value(equipment, search_item)
 
-    # ===============================
-    # TODO (Student): EDGE CASES
-    # ===============================
-    #
-    # Demonstrate at least two edge cases.
-    #
-    # Example ideas:
-    # - Delete using an invalid index
-    # - Search for a missing value
-    # - Insert into an empty list
-    # - Delete from an empty list
-    # - Use comments to explain each edge case.
+    if result != -1:
+        print(search_item, "was found at index", result)
+    else:
+        print(search_item, "was not found.")
+
+    # Search for equipment that does not exist in the list.
+    search_item = "GPS Receiver"
+    result = search_value(equipment, search_item)
+
+    if result != -1:
+        print(search_item, "was found at index", result)
+    else:
+        print(search_item, "was not found.")
 
     print("\n=== EDGE CASES ===")
-    print("TODO: Demonstrate at least two edge cases.")
+    # Edge Case 1
+    removed = delete_at(equipment, 100)
+    print("Attempting to delete at invalid index:", removed)
 
+    # Edge Case 2
+    empty_list = []
+    insert_at(empty_list, 0, "Backup SSPA")
+    print("After inserting into an empty list:", empty_list)
+
+    # Edge Case 3: Search an empty list.
+    result = search_value([], "LNA")
+    print("Searching for LNA in an empty list:", result)
 
 
 if __name__ == "__main__":
