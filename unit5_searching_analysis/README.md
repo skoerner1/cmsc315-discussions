@@ -46,4 +46,4 @@ with different situations. I utilized linear search when working with a smaller
 dataset or data that is not sorted. I think Binary search would be a better choice 
 for a large sorted dataset because it does not have to check every value. The 
 tradeoff is that binary search requires the data to be sorted first, while linear 
-search does not.
+search does not. 
