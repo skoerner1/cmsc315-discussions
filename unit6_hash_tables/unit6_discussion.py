@@ -23,73 +23,74 @@ def main():
     # ===============================
     # TODO (Student): CREATE A HASH TABLE
     # ===============================
-    #
-    # Requirements:
-    # 1. Create an empty dictionary.
-    # 2. Add at least 5 key-value pairs.
-    # 3. Add comments explaining how a dictionary
-    #    behaves like a hash table.
-    # 4. Display the contents of the dictionary.
+
+    # Creates an empty dictionary
+    tool_inventory = {}
 
 
     print("\n=== INSERT OPERATIONS ===")
-    print("TODO: Create a dictionary and add multiple key-value pairs.")
+
+    # The tool ID is the key and the tool name is the value.
+    tool_inventory[101] = "Cordless Drill"
+    tool_inventory[102] = "Circular Saw"
+    tool_inventory[103] = "Socket Set"
+    tool_inventory[104] = "Torque Wrench"
+    tool_inventory[105] = "Multimeter"
+
+    # Display the contents of the dictionary
+    print("Tool inventory:", tool_inventory)
 
     # ===============================
     # TODO (Student): LOOKUP OPERATIONS
     # ===============================
-    #
-    # Requirements:
-    # 1. Retrieve at least two existing keys.
-    # 2. Clearly display the lookup results.
-    # 3. Add meaningful comments to explain how the lookup works.
 
     print("\n=== LOOKUP OPERATIONS ===")
-    print("TODO: Demonstrate successful key lookups.")
+
+    # Retrieve two existing keys
+    print("Tool ID 103:", tool_inventory[103])
+    print("Tool ID 105:", tool_inventory[105])
 
     # ===============================
     # TODO (Student): UPDATE OPERATIONS
     # ===============================
-    #
-    # Requirements:
-    # 1. Update the value associated with an existing key.
-    # 2. Display the dictionary before and after the update.
-    # 3. Use comments to explain what happens when an existing key is assigned
-    #    a new value.
 
     print("\n=== UPDATE OPERATIONS ===")
-    print("TODO: Demonstrate updating an existing key.")
+
+    print("Before update:", tool_inventory)
+
+    # Assigning a new value to an existing key replaces the old value.
+    # Update the value for Tool ID 104
+    tool_inventory[104] = "Digital Torque Wrench"
+
+    print("After update:", tool_inventory)
 
     # ===============================
     # TODO (Student): DELETE OPERATIONS
     # ===============================
-    #
-    # Requirements:
-    # 1. Delete at least one key-value pair.
-    # 2. Display the dictionary before and after deletion.
-    # 3. Use comments to explain what happens when a key is removed.
 
     print("\n=== DELETE OPERATIONS ===")
-    print("TODO: Demonstrate deleting a key-value pair.")
+
+    print("Before deletion:", tool_inventory)
+
+    # Deleting a key removes the key and its associated value.
+    # Delete Tool ID 102.
+    del tool_inventory[102]
+
+    print("After deletion:", tool_inventory)
 
     # ===============================
     # TODO (Student): EDGE CASES
     # ===============================
-    #
-    # Demonstrate at least two edge cases.
-    #
-    # Example ideas:
-    # - Lookup a missing key
-    # - Delete a missing key safely
-    # - Update a missing key
-    # - Use an empty dictionary
-    #
-    # Explain what happens in each case.
 
     print("\n=== EDGE CASES ===")
-    print("TODO: Demonstrate and explain edge cases.")
 
+    # Edge Case 1: Lookup a missing key.
+    missing_tool = tool_inventory.get(999, "Tool not found")
+    print("Lookup Tool ID 999:", missing_tool)
 
+    # Edge Case 2: Delete a missing key safely.
+    removed_tool = tool_inventory.pop(200, "Tool not found")
+    print("Delete Tool ID 200:", removed_tool)
 
 if __name__ == "__main__":
     main()
