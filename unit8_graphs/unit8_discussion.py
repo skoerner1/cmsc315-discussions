@@ -33,58 +33,106 @@ def bfs(graph, start):
     - How BFS differs from depth-first traversal.
     """
 
-    pass
+    # Return an empty list if the starting device
+    # does not exist in the network.
+    if start not in graph:
+        return []
 
+    visited = set()
+
+    # BFS uses a queue because the first device discovered
+    # should be the first device explored.
+    queue = deque([start])
+
+    traversal_order = []
+
+    while queue:
+        current = queue.popleft()
+
+        if current not in visited:
+            visited.add(current)
+            traversal_order.append(current)
+
+            # Add connected devices to the queue so BFS
+            # can explore the network level by level.
+            for neighbor in graph[current]:
+                if neighbor not in visited:
+                    queue.append(neighbor)
+
+    return traversal_order
 
 def main():
     print("=== UNIT 8: BREADTH-FIRST SEARCH ===")
 
-    # ===============================
-    # TODO (Student): CREATE A GRAPH
-    # ===============================
-    #
-    # Requirements:
-    # 1. Create a graph using an adjacency list.
-    # 2. Include at least 6 nodes.
-    # 3. Include multiple connections between nodes.
-    # 4. Clearly display the graph structure.
-    # 5. Use comments to explain what the nodes and edges represent.
+    network = {
+        "Router": ["Switch 1", "Switch 2"],
+        "Switch 1": ["Router", "Computer 1", "Computer 2"],
+        "Switch 2": ["Router", "Server", "Access Point"],
+        "Computer 1": ["Switch 1"],
+        "Computer 2": ["Switch 1"],
+        "Server": ["Switch 2"],
+        "Access Point": ["Switch 2"]
+    }
 
     print("\n=== GRAPH STRUCTURE ===")
-    print("TODO: Create and display a graph.")
 
-    # ===============================
-    # TODO (Student): BFS TRAVERSAL
-    # ===============================
-    #
-    # Requirements:
-    # 1. Select a starting node.
-    # 2. Perform BFS traversal.
-    # 3. Display the traversal order.
-    # 4. Use comments to explain how BFS visits nodes level by level.
-    # 5. Add at least one additional node or edge
-    #    and demonstrate the updated traversal.
+    for device, connections in network.items():
+        print(device, "->", connections)
 
     print("\n=== BFS TRAVERSAL ===")
-    print("TODO: Perform and explain BFS traversal.")
 
-    # ===============================
-    # TODO (Student): EDGE CASES
-    # ===============================
-    #
-    # Demonstrate at least two edge cases.
-    #
-    # Example ideas:
-    # - Start from a different node
-    # - Use a disconnected graph
-    # - Handle a missing start node safely
-    # - Graph containing only one node
-    # - Empty graph
-    #
-    # Explain what happens in each case.
+    start_device = "Router"
+
+    print("Starting device:", start_device)
+    print("Traversal order:", bfs(network, start_device))
+
+    # A network printer is added to the graph.
+    # The printer is connected directly to Switch 1.
+
+    network["Printer"] = ["Switch 1"]
+    network["Switch 1"].append("Printer")
+
+    print("\n=== UPDATED GRAPH ===")
+    print("Added Printer connected to Switch 1.")
+
+    # Display the updated graph.
+    for device, connections in network.items():
+        print(device, "->", connections)
+
+    print("\nUpdated BFS traversal:")
+    print(bfs(network, "Router"))
+
 
     print("\n=== EDGE CASE TESTS ===")
-    print("TODO: Demonstrate and explain edge cases.")
+
+    # Edge Case 1:
+    # Start BFS from a different device.
+    # The traversal order changes because BFS now
+    # explores outward from Computer 1.
+
+    print("\nEdge Case 1: Different starting device")
+    print("Starting from Computer 1:")
+    print(bfs(network, "Computer 1"))
+
+    # Edge Case 2:
+    # Attempt to start from a device that does not
+    # exist in the network. The function safely
+    # returns an empty list.
+
+    print("\nEdge Case 2: Missing starting device")
+    print("Starting from Unknown Device:")
+    print(bfs(network, "Unknown Device"))
+
+    # Edge Case 3:
+    # Test a graph containing only one device.
+    # BFS should visit only that device.
+
+    single_device_network = {
+        "Router": []
+    }
+
+    print("\nEdge Case 3: Single-device network")
+    print(bfs(single_device_network, "Router"))
 
 
 
